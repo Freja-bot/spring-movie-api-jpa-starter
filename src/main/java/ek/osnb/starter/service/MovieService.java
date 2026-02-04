@@ -65,17 +65,12 @@ public class MovieService {
     }
 
     public Movie addDetailsToMovie(Long movieId, MovieDetails details) {
-        // TODO: Find the movie by ID
         Optional<Movie> movie = movieRepository.findById(movieId);
         if(movie.isEmpty()){
             throw new NotFoundException("A movie, with the provided id, could not be found");
         }
-        MovieDetails movieDetails = movieDetailsRepository.save(details);
-        // TODO: Set the details on the movie
-        movie.get().setMovieDetails(movieDetails);
-        // TODO: Set the movie reference on details (for bidirectional consistency)
-        movieDetails.setMovie(movie.get());
-        // TODO: Save and return the updated movie
+        movie.get().setMovieDetails(details);
+        details.setMovie(movie.get());
         return movieRepository.save(movie.get());
     }
 

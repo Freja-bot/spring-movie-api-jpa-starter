@@ -26,7 +26,7 @@ public class Movie {
     )
     private List<Actor> actors = new ArrayList<>();
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JsonManagedReference
     @JoinColumn(name = "movie_details_id")
     private MovieDetails movieDetails;
