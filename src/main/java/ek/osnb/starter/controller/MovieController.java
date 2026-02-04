@@ -1,6 +1,7 @@
 package ek.osnb.starter.controller;
 
 import ek.osnb.starter.model.Movie;
+import ek.osnb.starter.model.MovieDetails;
 import ek.osnb.starter.service.MovieService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +43,15 @@ public class MovieController {
             @PathVariable Long movieId,
             @PathVariable Long actorId) {
         return ResponseEntity.ok(movieService.addActorToMovie(movieId, actorId));
+    }
+
+    @PostMapping("/{id}/details")
+    public ResponseEntity<Movie> addDetailsToMovie(
+            @PathVariable Long id,
+            @RequestBody MovieDetails details) {
+        // TODO: Call the service method
+        // TODO: Return the updated movie
+        return ResponseEntity.ok(movieService.addDetailsToMovie(id, details));
     }
 
 }
